@@ -39,8 +39,12 @@ function toAbsoluteUrl(href) {
 
 function extractLink($, element) {
   const href =
+    $(element).find("a.AdYoz").attr("href") ||
+    $(element).find("a.place_bluelink").attr("href") ||
+    $(element).find("a.place_thumb").attr("href") ||
     $(element).find("a.COOCz").attr("href") ||
     $(element).find("a[href*='/place/']").first().attr("href") ||
+    $(element).find("a[href*='booking.naver.com']").first().attr("href") ||
     $(element).find("a[href]").first().attr("href");
 
   return toAbsoluteUrl(href);
@@ -48,6 +52,8 @@ function extractLink($, element) {
 
 function extractDescription($, element) {
   const candidates = [
+    $(element).find(".smfY7 .KypJH").first().text(),
+    $(element).find(".KypJH").first().text(),
     $(element).find(".zpUI7").first().text(),
     $(element).find("[class*='desc']").first().text(),
     $(element).find("[class*='summary']").first().text(),
